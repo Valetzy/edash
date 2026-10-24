@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import { BarChart, Bar, XAxis, YAxis, Tooltip, Legend, CartesianGrid, ResponsiveContainer } from 'recharts'
 import { supabase } from '../../lib/supabase'
+import { StudentOutcomeList } from '../../components/StudentOutcomeList'
 import type { Program, RetentionRateRow, SchoolTerm, SemesterType } from '../../types/database'
 
 export function CloseTerm() {
@@ -19,6 +20,7 @@ export function CloseTerm() {
   const [retention, setRetention] = useState<RetentionRateRow[]>([])
   const [programFilter, setProgramFilter] = useState<string>('all')
   const [monitorLoading, setMonitorLoading] = useState(true)
+  const [refreshKey, setRefreshKey] = useState(0)
 
   async function loadTerms() {
     const { data } = await supabase.from('school_terms').select('*').order('term_order', { ascending: false })
@@ -75,6 +77,7 @@ export function CloseTerm() {
     setResult(row)
     loadTerms()
     loadMonitoring()
+    setRefreshKey((k) => k + 1)
   }
 
   const filteredRetention = programFilter === 'all' ? retention : retention.filter((r) => r.program_id === programFilter)
@@ -234,6 +237,8 @@ export function CloseTerm() {
           </>
         )}
       </div>
+
+      <StudentOutcomeList refreshKey={refreshKey} />
     </div>
   )
 }

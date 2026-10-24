@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { supabase } from '../../lib/supabase'
 import { useAuth } from '../../context/AuthContext'
+import { StudentOutcomeList } from '../../components/StudentOutcomeList'
 import type { CaseDetail, CaseStatus, CaseType } from '../../types/database'
 
 const STATUS_TONE: Record<CaseStatus, 'risk' | 'shift' | 'retain'> = {
@@ -119,6 +120,8 @@ export function CaseList() {
           </tbody>
         </table>
       )}
+
+      {!isPresidentView && <StudentOutcomeList outcomes={['dropout']} />}
     </div>
   )
 }

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { BarChart, Bar, XAxis, YAxis, Tooltip, Legend, CartesianGrid, ResponsiveContainer } from 'recharts'
 import { supabase } from '../../lib/supabase'
 import { StatCard } from '../../components/StatCard'
+import { StudentOutcomeList } from '../../components/StudentOutcomeList'
 import type { Program, ProgramTermStat, RetentionRateRow, SchoolTerm } from '../../types/database'
 
 export function RegistrarOverview() {
@@ -158,6 +159,8 @@ export function RegistrarOverview() {
           </>
         )}
       </div>
+
+      <StudentOutcomeList />
     </div>
   )
 }

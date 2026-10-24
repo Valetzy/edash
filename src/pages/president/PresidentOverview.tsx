@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { LineChart, Line, XAxis, YAxis, Tooltip, CartesianGrid, ResponsiveContainer, BarChart, Bar } from 'recharts'
 import { supabase } from '../../lib/supabase'
 import { StatCard } from '../../components/StatCard'
+import { StudentOutcomeList } from '../../components/StudentOutcomeList'
 import type { DropoutReasonSummary, ProgramTermStat, RetentionRateRow, SchoolTerm } from '../../types/database'
 
 export function PresidentOverview() {
@@ -97,6 +98,8 @@ export function PresidentOverview() {
           </div>
         )}
       </div>
+
+      <StudentOutcomeList />
 
       <div className="flex gap-4">
         <Link to="/president/programs" className="btn btn-secondary">View per-program breakdown</Link>

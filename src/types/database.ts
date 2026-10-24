@@ -94,6 +94,9 @@ export interface CaseDetail {
   reason_notes: string | null
   outcome: VisitOutcome | null
   visit_date: string | null
+  from_year_level: number | null
+  to_year_level: number | null
+  year_level_note: string
 }
 
 export interface ProgramTermStat {
@@ -135,3 +138,23 @@ export const REASON_CATEGORIES = [
   'transferred_school',
   'other',
 ] as const
+
+export type StudentOutcomeType = 'retained' | 'shifted' | 'dropout'
+
+export interface StudentOutcome {
+  enrollment_id: string
+  term_id: string
+  school_year: string
+  semester: SemesterType
+  term_order: number
+  is_closed: boolean
+  student_id: string
+  student_no: string
+  first_name: string
+  last_name: string
+  program_id: string
+  program_name: string
+  to_program_name: string | null
+  year_level: number
+  outcome: StudentOutcomeType
+}
